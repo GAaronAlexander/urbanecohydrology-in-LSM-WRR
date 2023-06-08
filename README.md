@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/651281312.svg)](https://zenodo.org/badge/latestdoi/651281312)
 # Urban Ecohydrology:  Resolving Sub-Grid Lateral Water and Energy Transfers in a Land Surface Mode
 Materials supporting submitted manuscript about integrating lateral surface water transfers changes water and energy fluxes within a land surface model (noah-mp for heterogneous urban environments (HUE))
 
