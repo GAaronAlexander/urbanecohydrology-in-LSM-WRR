@@ -1,0 +1,63 @@
+&NOAHLSM_OFFLINE
+
+ HRLDAS_SETUP_FILE = ~/tree_overhang_shift_clayloam/HRLDAS_setup_201804010000_d1"
+ INDIR = "~/inputs/"
+ OUTDIR = "~/three_season_long_simulations/tree_overhang_expansion_clayloam/tree_overhang_expansion_clayloam_20/"
+
+ START_YEAR  = 2018
+ START_MONTH = 04
+ START_DAY   = 01
+ START_HOUR  = 00
+ START_MIN   = 00
+
+
+
+ KDAY = 945
+ 
+ DYNAMIC_VEG_OPTION                = 4
+ CANOPY_STOMATAL_RESISTANCE_OPTION = 1
+ BTR_OPTION                        = 2
+ RUNOFF_OPTION                     = 3
+ SURFACE_DRAG_OPTION               = 1
+ FROZEN_SOIL_OPTION                = 1
+ SUPERCOOLED_WATER_OPTION          = 1
+ RADIATIVE_TRANSFER_OPTION         = 3
+ SNOW_ALBEDO_OPTION                = 2
+ PCP_PARTITION_OPTION              = 1
+ TBOT_OPTION                       = 2
+ TEMP_TIME_SCHEME_OPTION           = 1
+ GLACIER_OPTION                    = 1
+ SURFACE_RESISTANCE_OPTION         = 1
+
+ FORCING_TIMESTEP = 3600
+ NOAH_TIMESTEP    = 300
+ OUTPUT_TIMESTEP  = 300
+
+ SPLIT_OUTPUT_COUNT = -1
+ RESTART_FREQUENCY_HOURS = 0
+
+ ! XSTART = 20
+ ! XEND   = 20
+ ! YSTART = 203
+ ! YEND   = 203
+
+ NSOIL=4
+ soil_thick_input(1) = 0.10
+ soil_thick_input(2) = 0.30
+ soil_thick_input(3) = 0.60
+ soil_thick_input(4) = 1.00
+
+ ZLVL = 2.0
+
+ NOAHMP_MOSAIC_SCHEME = 0
+ GEOGRID_FILE_NAME_FOR_MOSAIC = "/glade/u/home/galexand/scratch/13JULY2010_8CATNOAH_NLCD_ERA5/wrfinput_d03"
+ NUMBER_MOSAIC_CATAGORIES = 4
+ NUMBER_LAND_USE_CATAGORIES = 45
+ ! example of 10% urban tree over pavement and 50% regular urban tree
+ FAREA_INPUT = 1.0,0.20,1.0
+/
+
+&URBAN_OFFLINE
+ UCMCALL = 0
+ ZLVL_URBAN = 15.0
+
