@@ -12,14 +12,29 @@ In addition, NLDAS-2 data (Milwaukee_NLDAS2_HRLDAS_input_hrly.dat) is provied. T
  + Hour (HH)
  + Wind Speed ($m \enspace s^{-1}$)
  + AIr Temperature ($K$)
- + Specific Humidity ( $kg \enspace kg ^{-1}$ )
+ + Specific Humidity ( $kg \enspace kg ^{-1}$ ) 
  + Air Pressure ($Pa$)
  + Longwave Radiation ($W \enspace m^{-2}$)
  + Shortwave Radiation ($W \enspace m^{-2}$)
  + Precipitation ($mm \enspace s^{-1}$)
 
 ## Noahmp-HUE
-This is the noah-mp code that was modified for this study. New changes are found in the phys/module_sf_noahmplsm.F, phys/module_sf_noahmpdrv.F, IO_code/module_NoahMP_hrldas_driver.F.
+This is the noah-mp code that was modified for this study. New changes are found in the phys/module_sf_noahmplsm.F, phys/module_sf_noahmpdrv.F.
+
+### An important note:
+**This version of NoahMp -HUE was made to test the results for a single grid square. Thus, there is no driver that would be needed to take into account the extra land-types that are in this study. For a spatially explicit version of this code, please refer to 'https://github.com/GAaronAlexander/NOAH-MP_HUE'**
+
+### Edits made in noahmp-hue/phys/module_sf_noahmplsm.F
++ Most changes were made in the water subroutine, starting on line 5974:
+	+ Soil moisture sharing is added to ETRANI (the amount of ET to be extracted) on line 6126
+	+ In lines 6211 to 6219: we store the volumetric soil moisture flux, which has to be multiplied by fractional, the size, and the time step. 
+	+ On line 6268, we store the volumetric flux of water that will 'runon' to a connected dataset. Runon is only populated (e.g. not zero) based on the land-type on lines 7535 through 7543. 
++ Spread throughout this script that are if else switches that test to see if the land-type is urban. We have changed these to include the new land-types, which are coded as 41, 42, 43, 44, 45, 46, and 47. Note that land cover type 46 is not examined during this study (green roofs). 
+
+### Edits made in noahmp-hue/phys/module_sf_noahmpdrv.F
++ Mosaic Init was added to the driver starting on line 3359. (this is not utalized in this paper, but is necessary to run this model in spatially distributed methods)
++ Mosaic appropriate swapping for these point simulations were addressed in lines 622 through 676. 
++ Soil parameters for the permeable pavement are located between 1348 and 1358, where all parameters are identical to sand except for the saturated hydraulic conductivity and soil moisture maximum. 
 
 To compile and run, please see (https://github.com/NCAR/hrldas-release/tree/master), which is the specific version of Noah-MP used in this study.
 
